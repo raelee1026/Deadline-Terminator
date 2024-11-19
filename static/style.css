@@ -1,65 +1,88 @@
-/* 通用樣式 */
+/* 基本樣式 */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f9f9f9;
-    color: #333;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9; /* 柔和的灰白色背景 */
+    color: #333; /* 深灰色文字 */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
 }
 
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 柔和的陰影 */
+}
+
+/* 標題樣式 */
 h1, h2 {
-    color: #0056b3;
+    text-align: center;
+    color: #0056b3; /* 深藍色 */
+    margin-bottom: 20px;
 }
 
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+/* 按鈕樣式 */
 button {
+    display: inline-block;
     background-color: #007bff;
-    color: white;
+    color: #fff;
     border: none;
+    border-radius: 5px;
     padding: 10px 15px;
+    font-size: 1rem;
     cursor: pointer;
-    border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* 深藍色 */
 }
 
-/* 頁面佈局 */
-.container {
-    max-width: 800px;
-    margin: auto;
-}
-
-/* 任務列表樣式 */
+/* 任務列表 */
 #task-list {
-    margin: 20px 0;
+    margin-top: 20px;
 }
 
 .task {
-    background: white;
+    background: #ffffff;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
+    border-radius: 8px;
+    padding: 15px 20px;
     margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 任務卡片的柔和陰影 */
 }
 
 .task h3 {
     margin: 0 0 10px;
+    font-size: 1.2rem;
     color: #333;
 }
 
 .task p {
     margin: 5px 0;
-    color: #666;
+    font-size: 0.9rem;
+    color: #555;
 }
 
 /* 表單樣式 */
 #task-form {
-    background: white;
+    margin-top: 20px;
+    background: #ffffff;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 表單容器陰影 */
 }
 
 #task-form input,
@@ -68,8 +91,16 @@ button:hover {
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 1rem;
     box-sizing: border-box;
+}
+
+#task-form input:focus,
+#task-form textarea:focus {
+    outline: none;
+    border-color: #007bff; /* 聚焦時的邊框顏色 */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* 聚焦時的柔和光暈 */
 }
 
 #task-form textarea {
@@ -79,5 +110,11 @@ button:hover {
 
 #task-form button {
     width: 100%;
-    font-size: 16px;
+    font-size: 1rem;
+    padding: 10px;
+}
+
+/* 整體對齊 */
+.text-center {
+    text-align: center;
 }

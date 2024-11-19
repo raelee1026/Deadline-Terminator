@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"sort"
 	"time"
 )
 
@@ -24,8 +25,16 @@ func main() {
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
+// SortTasksByDeadline sorts tasks by their deadline
+func SortTasksByDeadline() {
+	sort.Slice(tasks, func(i, j int) bool {
+		return tasks[i].Deadline.Before(tasks[j].Deadline)
+	})
+}
+
 func handleTasks(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
+		SortTasksByDeadline()
 		w.Header().Set("Content-Type", "application/json")
 		if tasks == nil {
 			tasks = []Task{}
