@@ -1,0 +1,83 @@
+/* 通用樣式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1, h2 {
+    color: #0056b3;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* 頁面佈局 */
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+/* 任務列表樣式 */
+#task-list {
+    margin: 20px 0;
+}
+
+.task {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.task h3 {
+    margin: 0 0 10px;
+    color: #333;
+}
+
+.task p {
+    margin: 5px 0;
+    color: #666;
+}
+
+/* 表單樣式 */
+#task-form {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#task-form input,
+#task-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#task-form textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+#task-form button {
+    width: 100%;
+    font-size: 16px;
+}

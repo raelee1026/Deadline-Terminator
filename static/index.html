@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadline Terminator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Deadline Terminator</h1>
+    <div>
+        <h2>Tasks</h2>
+        <div id="task-list"></div>
+    </div>
+    <div>
+        <h2>Add New Task</h2>
+        <form id="task-form">
+            <input type="text" id="title" placeholder="Title" required>
+            <input type="datetime-local" id="deadline" required>
+            <textarea id="description" placeholder="Description"></textarea>
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
