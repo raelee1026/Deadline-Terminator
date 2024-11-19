@@ -118,3 +118,9 @@ button:hover {
 .text-center {
     text-align: center;
 }
+
+.task-deleted {
+    background-color: lightgray; 
+    border: 1px solid lightgray; 
+    opacity: 0.7; /* 減弱透明度 */
+}
