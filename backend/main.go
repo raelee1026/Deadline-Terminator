@@ -2,12 +2,14 @@ package main
 
 import (
 	"context"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 	"sort"
+	"strings"
 	"time"
 
 	"golang.org/x/oauth2"
@@ -22,13 +24,11 @@ var (
 )
 
 func init() {
-	// 从 JSON 文件中读取 OAuth2 配置
-	b, err := os.ReadFile("credentials.json")
+	b, err := os.ReadFile("../config/credentials.json")
 	if err != nil {
 		log.Fatalf("Unable to read client secret file: %v", err)
 	}
 
-	// 解析 JSON 文件
 	config, err := google.ConfigFromJSON(b, gmail.GmailReadonlyScope)
 	if err != nil {
 		log.Fatalf("Unable to parse client secret file to config: %v", err)
@@ -36,30 +36,29 @@ func init() {
 	oauth2Config = config
 }
 
-// Task represents a task or email as a task
 type Task struct {
-	ID          int       `json:"id"`          // 唯一識別符
-	Title       string    `json:"title"`       // 任務標題
-	Deadline    time.Time `json:"deadline"`    // 截止日期
-	Description string    `json:"description"` // 任務描述
-	Deleted     bool      `json:"deleted"`     // 是否被標記為刪除
+	ID          int       `json:"id"`
+	Title       string    `json:"title"`
+	Deadline    time.Time `json:"deadline"`
+	Description string    `json:"description"`
+	Deleted     bool      `json:"deleted"`
 }
 
 var tasks []Task
-var nextID = 1 // 自增量，用於生成唯一的任務 ID
+var nextID = 1
 
 func main() {
-	// 註冊 HTTP 處理函數
 	http.HandleFunc("/api/tasks", handleTasks)
-	http.HandleFunc("/api/tasks/sync", handleSyncTasks)       // 同步 Gmail 任務
-	http.HandleFunc("/oauth2/callback", handleOAuth2Callback) // 添加新的處理函數
+	http.HandleFunc("/api/tasks/sync", handleSyncTasks)
+	http.HandleFunc("/oauth2/callback", handleOAuth2Callback)
 	http.Handle("/", http.FileServer(http.Dir("./static")))
 
 	log.Println("Starting Deadline Terminator server on :8080")
+	log.Println("Visit https://accounts.google.com/o/oauth2/auth?access_type=offline&client_id=997285622302-goltvajj196rm1ims0sijhgbvro82cad.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Foauth2%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly&state=state-token to authenticate with Gmail")
+	// I want to use credentials.json to replace the client_id and client_secret in the URL
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-// handleOAuth2Callback 處理 /oauth2/callback 的請求
 func handleOAuth2Callback(w http.ResponseWriter, r *http.Request) {
 	code := r.URL.Query().Get("code")
 	if code == "" {
@@ -67,14 +66,12 @@ func handleOAuth2Callback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 交換 code 獲取 token
 	token, err := oauth2Config.Exchange(context.Background(), code)
 	if err != nil {
 		http.Error(w, "Failed to exchange token: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	// 使用 token 獲取 Gmail 服務
 	client := oauth2Config.Client(context.Background(), token)
 	srv, err := gmail.New(client)
 	if err != nil {
@@ -82,19 +79,17 @@ func handleOAuth2Callback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 獲取收件箱的郵件
 	user := "me"
-	req := srv.Users.Messages.List(user).LabelIds("INBOX").MaxResults(10)
+	req := srv.Users.Messages.List(user).LabelIds("INBOX").MaxResults(50)
 	res, err := req.Do()
 	if err != nil {
 		http.Error(w, "Unable to retrieve messages: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	// 顯示郵件內容
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	w.Write([]byte("<html><body><h1>OAuth2 Callback Page</h1>"))
-	w.Write([]byte("<h2>Inbox Data:</h2><ul>"))
+	w.Write([]byte("<h2>Filtered Inbox Data:</h2><ul>"))
 
 	for _, m := range res.Messages {
 		msg, err := srv.Users.Messages.Get(user, m.Id).Do()
@@ -102,7 +97,31 @@ func handleOAuth2Callback(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Unable to retrieve message: "+err.Error(), http.StatusInternalServerError)
 			return
 		}
-		w.Write([]byte("<li>" + msg.Snippet + "</li>"))
+
+		var subject, body string
+		for _, header := range msg.Payload.Headers {
+			if header.Name == "Subject" && strings.HasPrefix(header.Value, "1131.") {
+				subject = header.Value
+			}
+		}
+
+		if subject == "" {
+			continue
+		}
+
+		for _, part := range msg.Payload.Parts {
+			if part.MimeType == "text/plain" {
+				decodedBody, err := base64.URLEncoding.DecodeString(part.Body.Data)
+				if err != nil {
+					body = "Unable to decode body"
+				} else {
+					body = string(decodedBody)
+				}
+				break
+			}
+		}
+
+		w.Write([]byte("<li><h3>" + subject + "</h3>" + body + "</li>"))
 	}
 
 	w.Write([]byte("</ul></body></html>"))
