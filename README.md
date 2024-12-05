@@ -45,7 +45,7 @@ https://accounts.google.com/o/oauth2/auth?access_type=offline&client_id=99728562
 `pip install python-dotenv mysql-connector-python`
 
 ### Run
-    - `python main.py 1131`
+`python main.py 1131`
 
-    - 1131 -> 113學年 第一學期    
-    - 112X -> 112學年 暑期
+- 1131 -> 113學年 第一學期    
+- 112X -> 112學年 暑期
