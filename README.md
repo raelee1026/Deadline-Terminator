@@ -38,3 +38,14 @@ After running main.go, open your browser and go to the following URL to authenti
 https://accounts.google.com/o/oauth2/auth?access_type=offline&client_id=997285622302-goltvajj196rm1ims0sijhgbvro82cad.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Foauth2%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly&state=state-token
 ```
 ---
+## Crawler
+### Requirements
+`pip install requests`
+
+`pip install python-dotenv mysql-connector-python`
+
+### Run
+    - `python main.py 1131`
+
+    - 1131 -> 113學年 第一學期    
+    - 112X -> 112學年 暑期
