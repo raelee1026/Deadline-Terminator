@@ -49,9 +49,10 @@ var nextID = 1
 
 func main() {
 	http.HandleFunc("/api/tasks", handleTasks)
+	http.HandleFunc("/api/tasks/delete", handleDeleteTask)
 	http.HandleFunc("/api/tasks/sync", handleSyncTasks)
 	http.HandleFunc("/oauth2/callback", handleOAuth2Callback)
-	http.Handle("/", http.FileServer(http.Dir("./static")))
+	http.Handle("/", http.FileServer(http.Dir("../frontend")))
 
 	log.Println("Starting Deadline Terminator server on :8080")
 	log.Println("Visit https://accounts.google.com/o/oauth2/auth?access_type=offline&client_id=997285622302-goltvajj196rm1ims0sijhgbvro82cad.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Foauth2%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly&state=state-token to authenticate with Gmail")
@@ -153,6 +154,36 @@ func handleTasks(w http.ResponseWriter, r *http.Request) {
 	} else {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
+}
+
+func handleDeleteTask(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	var request struct {
+		ID int `json:"id"`
+	}
+
+	err := json.NewDecoder(r.Body).Decode(&request)
+	if err != nil {
+		http.Error(w, "Invalid request format", http.StatusBadRequest)
+		fmt.Println("Error decoding request:", err)
+		return
+	}
+
+	for i, task := range tasks {
+		if task.ID == request.ID {
+			// 標記為刪除
+			tasks[i].Deleted = true
+			w.WriteHeader(http.StatusOK)
+			fmt.Fprintln(w, "Task marked as deleted")
+			return
+		}
+	}
+
+	http.Error(w, "Task not found", http.StatusNotFound)
 }
 
 // handleSyncTasks 同步 Gmail 收件匣中的郵件作為任務
