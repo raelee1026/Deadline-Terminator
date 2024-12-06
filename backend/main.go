@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -48,6 +49,11 @@ var tasks []Task
 var nextID = 1
 
 func main() {
+	err := loadTasksFromFile("../backend/jsonfortest/tasks.json")
+	if err != nil {
+		log.Fatalf("Failed to load tasks: %v", err)
+	}
+
 	http.HandleFunc("/api/tasks", handleTasks)
 	http.HandleFunc("/api/tasks/delete", handleDeleteTask)
 	http.HandleFunc("/api/tasks/sync", handleSyncTasks)
@@ -327,3 +333,48 @@ func saveToken(path string, token *oauth2.Token) {
 }
 
 // https://accounts.google.com/o/oauth2/auth?access_type=offline&client_id=997285622302-goltvajj196rm1ims0sijhgbvro82cad.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Foauth2%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly&state=state-token
+
+// loadTasksFromFile 讀取 JSON 文件並初始化任務清單
+func loadTasksFromFile(filename string) error {
+	file, err := os.Open(filename)
+	if err != nil {
+		return fmt.Errorf("could not open file: %v", err)
+	}
+	defer file.Close()
+
+	data, err := ioutil.ReadAll(file)
+	if err != nil {
+		return fmt.Errorf("could not read file: %v", err)
+	}
+
+	err = json.Unmarshal(data, &tasks)
+	if err != nil {
+		return fmt.Errorf("could not parse JSON: %v", err)
+	}
+
+	// 設置 nextID 為當前最大 ID + 1
+	for _, task := range tasks {
+		if task.ID >= nextID {
+			nextID = task.ID + 1
+		}
+	}
+
+	log.Printf("Loaded %d tasks from file", len(tasks))
+	return nil
+}
+
+// saveTasksToFile 將任務清單保存到 JSON 文件
+func saveTasksToFile(filename string) error {
+	data, err := json.MarshalIndent(tasks, "", "  ")
+	if err != nil {
+		return fmt.Errorf("could not marshal tasks: %v", err)
+	}
+
+	err = ioutil.WriteFile(filename, data, 0644)
+	if err != nil {
+		return fmt.Errorf("could not write file: %v", err)
+	}
+
+	log.Println("Tasks saved to file")
+	return nil
+}
