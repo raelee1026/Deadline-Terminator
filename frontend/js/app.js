@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         taskDiv.classList.add("task-deleted"); // 添加刪除樣式
                     }
 
+                    //html, css
                     taskDiv.innerHTML = `
                         <h3>${task.title}</h3>
                         <p><strong>Deadline:</strong> ${new Date(task.deadline).toLocaleString()}</p>

@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deadline Terminator</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-2.css">
 </head>
 <body>
     <h1>Deadline Terminator</h1>
@@ -22,5 +22,58 @@
         </form>
     </div>
     <script src="js/app.js"></script>
+    <script src="js/add.js"></script>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadline Terminator</title>
+    <link rel="stylesheet" href="css/style-2.css">
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <h1>🕒 Deadline Terminator</h1>
+            <p>Organize your tasks and meet your deadlines efficiently.</p>
+        </header>
+
+        <section class="tasks-section">
+            <h2>Your Tasks</h2>
+            <div id="task-list" class="task-list">
+                <p class="placeholder">No tasks yet. Click the "+" button to add one!</p>
+            </div>
+        </section>
+
+        <!-- Add Task Modal -->
+        <div class="task-modal" id="task-modal">
+            <div class="modal-content">
+                <h2>Add New Task</h2>
+                <form id="task-form">
+                    <input type="text" id="title" placeholder="Title" required>
+                    <input type="datetime-local" id="deadline" required>
+                    <textarea id="description" placeholder="Description"></textarea>
+                    <button type="submit">Add Task</button>
+                </form>
+                <button class="close-modal-btn" id="close-modal">✖</button>
+            </div>
+        </div>
+
+        <!-- Floating Add Button -->
+        <button class="add-task-btn" id="open-modal">+</button>
+
+        <footer class="footer">
+            <p>&copy; 2024 Deadline Terminator. All rights reserved. | Designed with 🤡 by 3SB</p>
+        </footer>
+    </div>
+
+
+
+    <script src="js/app.js"></script>
+    <script src="js/add.js"></script>
+</body>
+
 </html>
