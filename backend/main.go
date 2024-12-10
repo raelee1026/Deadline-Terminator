@@ -37,6 +37,17 @@ func init() {
 	oauth2Config = config
 }
 
+// avoid repeated task in task.json
+func isTaskExists(subject string) bool {
+	for _, task := range tasks {
+			if task.Title == subject {
+					return true
+			}
+	}
+	return false
+}
+
+
 type Task struct {
 	ID          int       `json:"id"`
 	Title       string    `json:"title"`
@@ -94,6 +105,8 @@ func handleOAuth2Callback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	var newTasks []Task
+
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	w.Write([]byte("<html><body><h1>OAuth2 Callback Page</h1>"))
 	w.Write([]byte("<h2>Filtered Inbox Data:</h2><ul>"))
@@ -112,8 +125,9 @@ func handleOAuth2Callback(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
-		if subject == "" {
-			continue
+		if subject == "" || isTaskExists(subject) {
+				// Skip if subject is empty or task already exists
+				continue
 		}
 
 		for _, part := range msg.Payload.Parts {
@@ -128,7 +142,26 @@ func handleOAuth2Callback(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
+		// create task
+		newTask := Task{
+			ID:          nextID,
+			Title:       subject,
+			Deadline:    time.Now().AddDate(0, 0, 7), // assumption
+			Description: body,
+			Deleted:     false,
+		}
+		nextID++
+		newTasks = append(newTasks, newTask)
+
 		w.Write([]byte("<li><h3>" + subject + "</h3>" + body + "</li>"))
+	}
+
+	// save to task
+	tasks = append(tasks, newTasks...)
+	err = saveTasksToFile("../backend/jsonfortest/tasks.json")
+	if err != nil {
+		http.Error(w, "Failed to save tasks: "+err.Error(), http.StatusInternalServerError)
+		return
 	}
 
 	w.Write([]byte("</ul></body></html>"))
