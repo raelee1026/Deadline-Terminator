@@ -13,6 +13,10 @@ import (
 	"strings"
 	"time"
 
+	"quickstart/gemini"
+
+	"github.com/joho/godotenv"
+
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/gmail/v1"
@@ -30,23 +34,18 @@ func init() {
 		log.Fatalf("Unable to read client secret file: %v", err)
 	}
 
+	// load env
+	err = godotenv.Load(".env")
+	if err != nil {
+		log.Println("Error loading .env file")
+	}
+
 	config, err := google.ConfigFromJSON(b, gmail.GmailReadonlyScope)
 	if err != nil {
 		log.Fatalf("Unable to parse client secret file to config: %v", err)
 	}
 	oauth2Config = config
 }
-
-// avoid repeated task in task.json
-func isTaskExists(subject string) bool {
-	for _, task := range tasks {
-			if task.Title == subject {
-					return true
-			}
-	}
-	return false
-}
-
 
 type Task struct {
 	ID          int       `json:"id"`
@@ -65,6 +64,8 @@ func main() {
 		log.Fatalf("Failed to load tasks: %v", err)
 	}
 
+	gemini.ProcessedTask()
+
 	http.HandleFunc("/api/tasks", handleTasks)
 	http.HandleFunc("/api/tasks/delete", handleDeleteTask)
 	http.HandleFunc("/api/tasks/sync", handleSyncTasks)
@@ -75,6 +76,16 @@ func main() {
 	log.Println("Visit https://accounts.google.com/o/oauth2/auth?access_type=offline&client_id=997285622302-goltvajj196rm1ims0sijhgbvro82cad.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Foauth2%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly&state=state-token to authenticate with Gmail")
 	// I want to use credentials.json to replace the client_id and client_secret in the URL
 	log.Fatal(http.ListenAndServe(":8080", nil))
+}
+
+// avoid repeated task in task.json
+func isTaskExists(subject string) bool {
+	for _, task := range tasks {
+		if task.Title == subject {
+			return true
+		}
+	}
+	return false
 }
 
 func handleOAuth2Callback(w http.ResponseWriter, r *http.Request) {
@@ -126,8 +137,8 @@ func handleOAuth2Callback(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if subject == "" || isTaskExists(subject) {
-				// Skip if subject is empty or task already exists
-				continue
+			// Skip if subject is empty or task already exists
+			continue
 		}
 
 		for _, part := range msg.Payload.Parts {
