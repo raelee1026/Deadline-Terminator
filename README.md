@@ -26,7 +26,7 @@ GEMINI_API_KEY=
 Run the following command to start the backend server:
 
 ```bash
-go run main.go
+go run .
 ```
 
 The server will start at `http://localhost:8080`.
