@@ -15,8 +15,8 @@ cd deadline-terminator
 
 ### 2. Add .env file
 
-Get the Gemini API Key. You can get is from `https://makersuite.google.com/app/prompts/new_freeform`
-Add .env  `/backend/.env`
+- Get the Gemini API Key. You can get is from  https://makersuite.google.com/app/prompts/new_freeform
+- Add .env  `/backend/.env`
 ```bash
 GEMINI_API_KEY=
 ```
