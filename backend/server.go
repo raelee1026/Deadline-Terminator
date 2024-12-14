@@ -11,16 +11,26 @@ import (
 	"sort"
 	"time"
 
+	"github.com/joho/godotenv"
 	"google.golang.org/api/gmail/v1"
 	"google.golang.org/api/option"
 )
 
-var tasks []Task
+var tasks [][]Task
 var nextID = 1
 
 func init() {
-	err := loadTasksFromFile("../backend/jsonfortest/tasks.json")
-	if err != nil {
+	// 初始化 tasks 切片
+	tasks = make([][]Task, 2)
+
+	// 加载环境变量
+	if err := godotenv.Load(".env"); err != nil {
+		log.Println("Error loading .env file")
+	}
+
+	// 加载任务文件
+	filenames := []string{"../backend/Task/tasks.json", "../backend/Task/rowTasks.json"}
+	if err := loadTasksFromFile(filenames); err != nil {
 		log.Fatalf("Failed to load tasks: %v", err)
 	}
 }
@@ -49,7 +59,7 @@ func handleTasks(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		SortTasksByDeadline()
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(tasks)
+		json.NewEncoder(w).Encode(tasks[0])
 		return
 	} else if r.Method == http.MethodPost {
 		var task Task
@@ -61,7 +71,7 @@ func handleTasks(w http.ResponseWriter, r *http.Request) {
 
 		task.ID = nextID
 		nextID++
-		tasks = append(tasks, task)
+		tasks[0] = append(tasks[0], task)
 
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusCreated)
@@ -89,9 +99,10 @@ func handleDeleteTask(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	for i, task := range tasks {
+	for i, task := range tasks[0] {
 		if task.ID == request.ID {
-			tasks[i].Deleted = true
+			tasks[0][i].Deleted = true
+			tasks[1][i].Deleted = true
 			w.WriteHeader(http.StatusOK)
 			fmt.Fprintln(w, "Task marked as deleted")
 			return
@@ -113,49 +124,56 @@ func handleSyncTasks(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tasks = append(tasks, newTasks...)
+	tasks[0] = append(tasks[0], newTasks...)
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(newTasks)
 }
 
 func SortTasksByDeadline() {
-	sort.Slice(tasks, func(i, j int) bool {
-		if tasks[i].Deleted != tasks[j].Deleted {
-			return !tasks[i].Deleted
+	sort.Slice(tasks[0], func(i, j int) bool {
+		if tasks[0][i].Deleted != tasks[0][j].Deleted {
+			return !tasks[0][i].Deleted
 		}
-		return tasks[i].Deadline.Before(tasks[j].Deadline)
+		return tasks[0][i].Deadline.Before(tasks[0][j].Deadline)
 	})
 }
 
-func loadTasksFromFile(filename string) error {
-	file, err := os.Open(filename)
-	if err != nil {
-		return fmt.Errorf("could not open file: %v", err)
-	}
-	defer file.Close()
-
-	data, err := ioutil.ReadAll(file)
-	if err != nil {
-		return fmt.Errorf("could not read file: %v", err)
-	}
-
-	err = json.Unmarshal(data, &tasks)
-	if err != nil {
-		return fmt.Errorf("could not parse JSON: %v", err)
-	}
-
-	for _, task := range tasks {
-		if task.ID >= nextID {
-			nextID = task.ID + 1
+func loadTasksFromFile(filenames []string) error {
+	for index, filename := range filenames {
+		file, err := os.Open(filename)
+		if err != nil {
+			log.Printf("Could not open file %s: %v", filename, err)
+			continue
 		}
-	}
+		defer file.Close()
 
-	log.Printf("Loaded %d tasks from file", len(tasks))
+		data, err := ioutil.ReadAll(file)
+		if err != nil {
+			log.Printf("Could not read file %s: %v", filename, err)
+			continue
+		}
+
+		var fileTasks []Task
+		if err := json.Unmarshal(data, &fileTasks); err != nil {
+			log.Printf("Could not parse JSON from file %s: %v", filename, err)
+			continue
+		}
+
+		tasks[index] = append(tasks[index], fileTasks...) // 将任务加载到对应的 tasks[index]
+		for _, task := range fileTasks {
+			if task.ID >= nextID {
+				nextID = task.ID + 1
+			}
+		}
+
+		log.Printf("Loaded %d tasks from file %s", len(fileTasks), filename)
+		nextID = len(fileTasks) + 1
+	}
 	return nil
 }
 
 func saveTasksToFile(filename string) error {
-	data, err := json.MarshalIndent(tasks, "", "  ")
+	data, err := json.MarshalIndent(tasks[0], "", "  ")
 	if err != nil {
 		return fmt.Errorf("could not marshal tasks: %v", err)
 	}

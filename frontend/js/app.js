@@ -20,11 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         taskDiv.classList.add("task-deleted"); // 添加刪除樣式
                     }
 
+                    // 將描述中的 \n 轉換為 <br> 來顯示換行
+                    const descriptionWithBreaks = task.description.replace(/\\n/g, '\n');
+                    console.log(descriptionWithBreaks);
                     //html, css
                     taskDiv.innerHTML = `
                         <h3>${task.title}</h3>
                         <p><strong>Deadline:</strong> ${new Date(task.deadline).toLocaleString()}</p>
-                        <p>${task.description}</p>
+                        <pre>${descriptionWithBreaks}</pre>
                         <button class="delete-btn" data-id="${task.id}">Delete</button>
                     `;
 

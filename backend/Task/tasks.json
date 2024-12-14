@@ -1,0 +1,177 @@
+[
+  {
+    "id": 1,
+    "title": "Task 1",
+    "deadline": "2024-12-22T13:11:28.128272Z",
+    "description": "This is task 1's description.",
+    "deleted": false
+  },
+  {
+    "id": 2,
+    "title": "Task 2",
+    "deadline": "2024-12-09T13:11:28.128309Z",
+    "description": "This is task 2's description.",
+    "deleted": false
+  },
+  {
+    "id": 3,
+    "title": "Task 3",
+    "deadline": "2024-12-10T13:11:28.128316Z",
+    "description": "This is task 3's description.",
+    "deleted": false
+  },
+  {
+    "id": 4,
+    "title": "Task 4",
+    "deadline": "2024-12-14T13:11:28.128327Z",
+    "description": "This is task 4's description.",
+    "deleted": false
+  },
+  {
+    "id": 5,
+    "title": "Task 5",
+    "deadline": "2024-12-12T13:11:28.128332Z",
+    "description": "This is task 5's description.",
+    "deleted": false
+  },
+  {
+    "id": 6,
+    "title": "Task 6",
+    "deadline": "2024-12-28T13:11:28.128336Z",
+    "description": "This is task 6's description.",
+    "deleted": false
+  },
+  {
+    "id": 7,
+    "title": "Task 7",
+    "deadline": "2024-12-09T13:11:28.128341Z",
+    "description": "This is task 7's description.",
+    "deleted": false
+  },
+  {
+    "id": 8,
+    "title": "Task 8",
+    "deadline": "2024-12-29T13:11:28.128347Z",
+    "description": "This is task 8's description.",
+    "deleted": false
+  },
+  {
+    "id": 9,
+    "title": "Task 9",
+    "deadline": "2024-12-26T13:11:28.128353Z",
+    "description": "This is task 9's description.",
+    "deleted": false
+  },
+  {
+    "id": 10,
+    "title": "Task 10",
+    "deadline": "2024-12-09T13:11:28.128358Z",
+    "description": "This is task 10's description.",
+    "deleted": false
+  },
+  {
+    "id": 11,
+    "title": "L18參考答案",
+    "deadline": "2024-12-17T11:58:00Z",
+    "description": "1131.562073 -\u003e Forums -\u003e 公告 -\u003e L18翻訳宿題参考回答\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=47116#p60907\n\nL18翻訳宿題参考回答已公佈，請同學們練習後對答案。\n\n洪淑娟老師也偷渡了期末加分題目：將新年相關活動排出順序，共有10個選項，每個選項需排一次，答案有很多可能性，同一天進行的活動也需注意順序。",
+    "deleted": false
+  },
+  {
+    "id": 12,
+    "title": "期末考通知",
+    "deadline": "2024-12-17T04:40:00Z",
+    "description": "1131.515617 -\u003e Forums -\u003e 公告 -\u003e 2024/12/20 (Fri) 期末考!\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=47026#p60790\n\n2024/12/20 (五) 期末考為紙筆測驗，關書，不可使用任何3C電子產品。",
+    "deleted": false
+  },
+  {
+    "id": 13,
+    "title": "繳交期末簡報",
+    "deadline": "2024-12-17T01:52:00Z",
+    "description": "1131.574003 -\u003e Forums -\u003e 公告 -\u003e Final Project presentation 已開放上傳\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=46970#p60722\n\nFinal Project presentation 上傳區已開放，請於報告前一天23:59前上傳簡報，每組一位同學繳交即可，繳交格式為：Group_.pptx / Group_.ppt / Group_.pdf，例如：Group_1.pdf。報告當天會投票選出最佳組別。",
+    "deleted": false
+  },
+  {
+    "id": 14,
+    "title": "專題評估報告",
+    "deadline": "2024-12-15T10:43:00Z",
+    "description": "1131.515518 -\u003e Forums -\u003e 一般公告 -\u003e 12/12專題題目評估(part 2)\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=46572#p60169\n\n12/12專題題目評估(part 2) 將於EC016教室舉行，需要報告的組別如附件所示，簡報檔(pdf或ppt格式)請在今日23:59前上傳E3。",
+    "deleted": false
+  },
+  {
+    "id": 15,
+    "title": "期末考資訊",
+    "deadline": "2024-12-15T09:10:00Z",
+    "description": "1131.515511 -\u003e Forums -\u003e Announcements 公告 -\u003e 12/18(Wed) 期末考 (注意考試地點) Final Exam (one place)\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=46343#p59849\n\n12/18(三) 期末考資訊：\n* 地點: 工四 B27 (EDB27)\n* 時間: 10:10am-11:50am (100 分鐘)\n* 範圍: 第八章到第十章",
+    "deleted": false
+  },
+  {
+    "id": 16,
+    "title": "學期成績公告",
+    "deadline": "2024-12-14T08:36:00Z",
+    "description": "1131.515518 -\u003e Forums -\u003e 一般公告 -\u003e About the achievement of this semester\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=46269#p59746\n\n網路程式設計學期成績(包含Quiz 5和Assignment 6)已公布於以下連結，最終專案成績除外。作業六如有問題導致分數被扣，原因已列在成績單上，助教不會個別說明。如有任何疑問，請寄信或於助教時間至電子資訊大樓703B洽詢。",
+    "deleted": false
+  },
+  {
+    "id": 17,
+    "title": "停課\u0026期末考",
+    "deadline": "2024-12-14T00:01:00Z",
+    "description": "1131.574000 -\u003e Forums -\u003e 公告 -\u003e [NetIA_提醒] 本周二(12/10) 停課乙次 +下周 (12/17) 學期考試\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=46080#p59511\n\n本週二(12/10)停課一次，請自行準備期末考試。學期考試內容範圍至12/3課程，考試時間為12/17(二) 18:30 - 21:30，地點為光復校區資訊館1F PC訓練教室，為上機考試(Open Book)，建議自備電腦。考試範圍整合Hw01, Hw02, Hw03，Hw03內容及範例考題稍後公告於Microsoft Teams教學平台教材區的[預覽區]-4.0_Preview-Homework-Exam。",
+    "deleted": false
+  },
+  {
+    "id": 18,
+    "title": "期末考通知",
+    "deadline": "2024-12-13T12:20:00Z",
+    "description": "1131.515504 -\u003e Forums -\u003e 公告 -\u003e [NOTICE] Written Final Exam\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=45982#p59407\n\n筆試期末考將於12/12(四) 3:30pm ~ 4:20pm 舉行，考場地點稍後公布。考試範圍為Lecture 9 ~ Lecture 14，可攜帶一張A4雙面小 cheat sheet，內容可從課堂講義、教科書和網路資料複製貼上。",
+    "deleted": false
+  },
+  {
+    "id": 19,
+    "title": "期末考通知",
+    "deadline": "2024-12-13T11:35:00Z",
+    "description": "1131.562073 -\u003e Forums -\u003e 公告 -\u003e 12/16期末考重要通知★ (加一項加分題)\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=45724#p59107\n\n12/16期末考範圍L15~L18，題型包含單字(需寫出漢字及標音)、文法填空、中翻日(需寫出漢字及標音，數字也需標音)、聽力、回答問題及日本新年活動排序(加分題)。集合時間13:20，考試時間約1小時，考前會先發小考卷。請勿遲到或缺考，缺考需依學校請假程序請假並申請補考。學期成績計算方式：期中考30%、期末考30%、小考20%、出席/課堂表現20%。L18翻譯作業請至公告區確認，寒假期間可預習動詞分類、ます形、て形等變化規則。",
+    "deleted": false
+  },
+  {
+    "id": 20,
+    "title": "期末考通知",
+    "deadline": "2024-12-13T09:52:00Z",
+    "description": "1131.562073 -\u003e Forums -\u003e 公告 -\u003e 12/16期末考重要通知★\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=45696#p59076\n\n12/16期末考範圍L15~L18，題型包含單字(需寫出漢字及標音)、文法填空、中翻日(需寫出漢字及標音，數字也需標音)、聽力、回答問題。集合時間13:20，考試時間約1小時，考前會先發小考卷。請勿遲到或缺考，缺考需依學校請假程序請假並申請補考。學期成績計算方式：期中考30%、期末考30%、小考20%、出席/課堂表現20%。L18翻譯作業請至公告區確認，寒假期間可預習動詞分類、ます形、て形等變化規則。",
+    "deleted": false
+  },
+  {
+    "id": 21,
+    "title": "期末考解答",
+    "deadline": "2024-12-12T11:47:00Z",
+    "description": "1131.537011 -\u003e Forums -\u003e 公告 -\u003e 期末考解答請查收\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=45576#p58935\n\n期末考解答已公布，請查收。",
+    "deleted": false
+  },
+  {
+    "id": 1,
+    "title": "Book flight",
+    "deadline": "2023-11-12T16:00:00Z",
+    "description": "Book a flight to New York for a business trip.\nDeparture date: December 10, 2023\nReturn date: December 17, 2023\nPreferred airline: United Airlines\nClass: Business\nNote: Check for available upgrades.",
+    "deleted": false
+  },
+  {
+    "id": 2,
+    "title": "Schedule meeting",
+    "deadline": "2023-11-12T16:00:00Z",
+    "description": "Schedule a meeting with the marketing team to discuss the new product launch.\nDate: November 20, 2023\nTime: 10:00 AM\nLocation: Conference Room A\nAttendees: Marketing team members, product manager\nNote: Prepare a presentation for the meeting.",
+    "deleted": false
+  },
+  {
+    "id": 3,
+    "title": "購買電腦",
+    "deadline": "2023-11-12T16:00:00Z",
+    "description": "購買新的筆記型電腦，用於工作用途。\n規格：\n- 處理器：Intel Core i7\n- 記憶體：16GB\n- 儲存空間：512GB SSD\n- 顯示卡：NVIDIA GeForce RTX 3060\n預算：NT$30,000\n備註：請比較各品牌的價格和效能。",
+    "deleted": false
+  },
+  {
+    "id": 4,
+    "title": "レストラン予約",
+    "deadline": "2023-11-12T16:00:00Z",
+    "description": "会社の忘年会のため、レストランを予約する。\n人数：20名\n日時：12月20日 19時\n予算：一人あたり5,000円\n希望：個室、飲み放題プラン\n備考：アレルギー対応が可能かどうか確認。",
+    "deleted": false
+  }
+]
