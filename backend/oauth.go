@@ -62,6 +62,7 @@ func HandleOAuth2Callback(w http.ResponseWriter, r *http.Request) {
 	}
 
 	getMessages(messages)
+	ProcessString(messages)
 
 	w.Header().Set("Content-Type", "application/json")
 	http.Redirect(w, r, "http://localhost:8080", http.StatusSeeOther)

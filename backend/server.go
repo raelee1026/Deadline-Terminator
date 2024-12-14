@@ -67,7 +67,6 @@ func handleCatchMessages(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Print(message)
 	ProcessMessages(message)
 
 	w.Header().Set("Content-Type", "application/json")

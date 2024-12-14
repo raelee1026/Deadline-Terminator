@@ -25,6 +25,8 @@ type ContentResponse struct {
 	Candidates *[]Candidates `json:Candidates`
 }
 
+var CourseNames []string
+
 // avoid repeated task in task.json
 func isTaskExists(subject string) bool {
 	if tasks == nil || len(tasks[1]) == 0 {
@@ -45,7 +47,7 @@ func ProcessMessages(messages []gmail.Message) {
 		return
 	}
 	ctx := context.Background()
-
+	//var index = 0
 	client, err := genai.NewClient(ctx, option.WithAPIKey(os.Getenv("GEMINI_API_KEY")))
 	if err != nil {
 		log.Fatal(err)
@@ -56,9 +58,11 @@ func ProcessMessages(messages []gmail.Message) {
 	model.ResponseMIMEType = "application/json"
 
 	// Build a single prompt for all messages
-	prompt := `Generate tasks for the following emails. Each email should generate one task. Use the JSON format provided. 
-	For Chinese emails, use Tradionnal Chinese; for English emails, use English; and for Japanese emails, use Japanese. 
-	The title should be concise (less than 20 characters), and the description should be detailed and include line breaks where appropriate for better readability.
+
+	prompt := "" /*`Generate tasks for the email. Each email should generate one task. Use the JSON format provided.
+	For Chinese emails, use Tradionnal Chinese; for English emails, use English; and for Japanese emails, use Japanese.
+	The title should be concise (less than 20 characters)
+	The description should be detailed and include line breaks where appropriate for better readability.
 	The "id" should be the given id.
 	The "deadline" should be 4 days after the UTC+08:00 (formatted as  RFC3339 standard).
 	The "deleted" field should always be false.
@@ -113,6 +117,83 @@ func ProcessMessages(messages []gmail.Message) {
 
 		// Append interleaved subject and body to the prompt
 		prompt += fmt.Sprintf("id:%d\nSubject: %s\nBody: %s\n\n", nextID, subject, body)
+		nextID++
+
+		index++
+	}*/
+	for i, msg := range messages {
+		var subject, body string
+
+		// Extract subject
+		for _, header := range msg.Payload.Headers {
+			if header.Name == "Subject" {
+				subject = header.Value
+				break
+			}
+		}
+
+		// Extract body
+		for _, part := range msg.Payload.Parts {
+			if part.MimeType == "text/plain" {
+				data, err := base64.URLEncoding.DecodeString(part.Body.Data)
+				if err != nil {
+					log.Printf("Failed to decode body: %v", err)
+					continue
+				}
+				body = string(data)
+				break
+			}
+		}
+
+		if subject == "" || isTaskExists(subject) {
+			continue
+		}
+
+		// Append Original
+		originalTask := Task{
+			ID:          nextID,
+			Title:       subject,
+			Deadline:    time.Now().AddDate(0, 0, 4),
+			Description: body,
+			Deleted:     false,
+		}
+		tasks[1] = append(tasks[1], originalTask)
+
+		// 確保 CourseNames 的索引有效
+		courseName := ""
+		if i < len(CourseNames) {
+			courseName = CourseNames[i]
+		} else {
+			courseName = "General"
+		}
+
+		// 動態生成包含 CourseNames 的 prompt
+		taskPrompt := fmt.Sprintf(`
+		Generate a task for the email. Use the JSON format provided.
+		The title should start with "%s" and be concise (less than 20 characters).
+		Use Traditional Chinese for Chinese emails, English for English emails, and Japanese for Japanese emails.
+		The description should be detailed and include line breaks where appropriate for better readability.
+		The "id" should be %d.
+		The "deadline" should be 4 days after the current date (UTC+08:00).
+		The "deleted" field should always be false.
+
+		Email details:
+		Subject: %s
+		Body: %s
+
+		Output format:
+		[
+			{
+				"id": %d,
+				"title": "string",
+				"deadline": "ISO 8601 formatted date string",
+				"description": "string",
+				"deleted": false
+			}
+		]`, courseName, nextID, subject, body, nextID)
+
+		// Append this prompt to the main prompt
+		prompt += taskPrompt
 		nextID++
 	}
 
