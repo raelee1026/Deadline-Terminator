@@ -40,6 +40,10 @@ func isTaskExists(subject string) bool {
 
 // ProcessMessages processes all Gmail messages in a single batch for Gemini
 func ProcessMessages(messages []gmail.Message) {
+	if len(messages) == 0 {
+		log.Println("No messages to process.")
+		return
+	}
 	ctx := context.Background()
 
 	client, err := genai.NewClient(ctx, option.WithAPIKey(os.Getenv("GEMINI_API_KEY")))

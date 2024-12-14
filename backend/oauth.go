@@ -19,6 +19,8 @@ var (
 	token        *oauth2.Token
 )
 
+var messages []gmail.Message
+
 func init() {
 	b, err := os.ReadFile("../config/credentials.json")
 	if err != nil {
@@ -52,13 +54,15 @@ func HandleOAuth2Callback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	messages, err := GetFilteredMessages(srv)
-	if err != nil {
+	var errMsg error
+	messages, errMsg := GetFilteredMessages(srv)
+	if errMsg != nil {
 		http.Error(w, "Unable to retrieve messages: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	ProcessMessages(messages)
+	getMessages(messages)
+
 	w.Header().Set("Content-Type", "application/json")
 	http.Redirect(w, r, "http://localhost:8080", http.StatusSeeOther)
 	json.NewEncoder(w).Encode(messages)

@@ -18,6 +18,7 @@ import (
 
 var tasks [][]Task
 var nextID = 1
+var message []gmail.Message
 
 func init() {
 	// 初始化 tasks 切片
@@ -39,6 +40,7 @@ func StartServer() {
 	http.HandleFunc("/api/tasks", handleTasks)
 	http.HandleFunc("/api/tasks/delete", handleDeleteTask)
 	http.HandleFunc("/api/tasks/sync", handleSyncTasks)
+	http.HandleFunc("/api/tasks/catch", handleCatchMessages)
 	http.HandleFunc("/oauth2/callback", HandleOAuth2Callback)
 	http.Handle("/", http.FileServer(http.Dir("../frontend")))
 
@@ -53,6 +55,26 @@ type Task struct {
 	Deadline    time.Time `json:"deadline"`
 	Description string    `json:"description"`
 	Deleted     bool      `json:"deleted"`
+}
+
+func getMessages(content []gmail.Message) {
+	message = content
+}
+
+func handleCatchMessages(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+		return
+	}
+
+	fmt.Print(message)
+	ProcessMessages(message)
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]string{
+		"status":  "success",
+		"message": "Gmail synced successfully",
+	})
 }
 
 func handleTasks(w http.ResponseWriter, r *http.Request) {
@@ -140,6 +162,7 @@ func SortTasksByDeadline() {
 
 func loadTasksFromFile(filenames []string) error {
 	for index, filename := range filenames {
+		var newNextID = 1
 		file, err := os.Open(filename)
 		if err != nil {
 			log.Printf("Could not open file %s: %v", filename, err)
@@ -159,15 +182,15 @@ func loadTasksFromFile(filenames []string) error {
 			continue
 		}
 
-		tasks[index] = append(tasks[index], fileTasks...) // 将任务加载到对应的 tasks[index]
+		tasks[index] = append(tasks[index], fileTasks...)
 		for _, task := range fileTasks {
 			if task.ID >= nextID {
-				nextID = task.ID + 1
+				newNextID = task.ID + 1
 			}
 		}
 
 		log.Printf("Loaded %d tasks from file %s", len(fileTasks), filename)
-		nextID = len(fileTasks) + 1
+		nextID = max(newNextID, nextID)
 	}
 	return nil
 }
