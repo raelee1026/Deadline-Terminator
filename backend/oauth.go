@@ -22,7 +22,7 @@ var (
 var messages []gmail.Message
 
 func init() {
-	b, err := os.ReadFile("../config/credentials.json")
+	b, err := os.ReadFile("./config/credentials.json")
 	if err != nil {
 		log.Fatalf("Unable to read client secret file: %v", err)
 	}
