@@ -23,7 +23,10 @@ func ProcessString(message []gmail.Message) ([]string, error) {
 		return []string{}, nil
 	}
 
-	courses, err := loadCourses("../backend/course/crawl1131.json")
+	CourseNames = []string{}
+	processedSubjects := make(map[string]bool)
+
+	courses, err := loadCourses("/app/course/crawl1131.json")
 	if err != nil {
 		return nil, fmt.Errorf("failed to load courses: %v", err)
 	}
@@ -36,22 +39,42 @@ func ProcessString(message []gmail.Message) ([]string, error) {
 				break
 			}
 		}
+		//fmt.Printf("subject : %s here \n", subject)
+		if processedSubjects[subject] {
+			continue
+		}
+
+		// 標記這個 subject 為已處理
+		processedSubjects[subject] = true
+
 		if strings.HasPrefix(subject, "1131.") {
-			re := regexp.MustCompile(`^1131\.(\d+):`)
+			re := regexp.MustCompile(`^1131\.(\d+)(:|\.)`)
 			match := re.FindStringSubmatch(subject)
+
+			//fmt.Printf("match : %s here \n", match)
+
 			if len(match) > 1 {
 				number := match[1]
-
+				found := false
 				for _, course := range courses {
 					uniqueIDLast6 := course.UniqueID[len(course.UniqueID)-6:]
 					if uniqueIDLast6 == number {
 						CourseNames = append(CourseNames, course.CosCname)
+						found = true
+						break
 					}
+				}
+				if !found {
+					CourseNames = append(CourseNames, "")
 				}
 			}
 		}
 	}
 
+	for i := 0; i < len(CourseNames); i++ {
+    fmt.Printf("Course %d: '%s'\n", i+1, CourseNames[i])
+	}
+	
 	return CourseNames, nil
 }
 

@@ -30,7 +30,7 @@ func init() {
 	}
 
 	// 加载任务文件
-	filenames := []string{"./Task/tasks.json", "./Task/rowTasks.json"}
+	filenames := []string{"/app/Task/tasks.json", "/app/Task/rowTasks.json"}
 	if err := loadTasksFromFile(filenames); err != nil {
 		log.Fatalf("Failed to load tasks: %v", err)
 	}

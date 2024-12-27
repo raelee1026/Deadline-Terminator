@@ -47,7 +47,6 @@ func ProcessMessages(messages []gmail.Message) {
 		return
 	}
 	ctx := context.Background()
-	//var index = 0
 	client, err := genai.NewClient(ctx, option.WithAPIKey(os.Getenv("GEMINI_API_KEY")))
 	if err != nil {
 		log.Fatal(err)
@@ -56,72 +55,10 @@ func ProcessMessages(messages []gmail.Message) {
 
 	model := client.GenerativeModel("gemini-1.5-pro")
 	model.ResponseMIMEType = "application/json"
-
 	// Build a single prompt for all messages
 
-	prompt := "" /*`Generate tasks for the email. Each email should generate one task. Use the JSON format provided.
-	For Chinese emails, use Tradionnal Chinese; for English emails, use English; and for Japanese emails, use Japanese.
-	The title should be concise (less than 20 characters)
-	The description should be detailed and include line breaks where appropriate for better readability.
-	The "id" should be the given id.
-	The "deadline" should be 4 days after the UTC+08:00 (formatted as  RFC3339 standard).
-	The "deleted" field should always be false.
-
-	Output format:
-	[
-		{
-			"id": 1,
-			"title": "string",
-			"deadline": "ISO 8601 formatted date string",
-			"description": "string",
-			"deleted": false
-		}
-	]`
-
+	prompt := ""
 	for _, msg := range messages {
-		var subject, body string
-
-		// Extract subject
-		for _, header := range msg.Payload.Headers {
-			if header.Name == "Subject" {
-				subject = header.Value
-				break
-			}
-		}
-
-		// Extract body
-		for _, part := range msg.Payload.Parts {
-			if part.MimeType == "text/plain" {
-				data, err := base64.URLEncoding.DecodeString(part.Body.Data)
-				if err != nil {
-					log.Printf("Failed to decode body: %v", err)
-					continue
-				}
-				body = string(data)
-				break
-			}
-		}
-
-		if subject == "" || isTaskExists(subject) {
-			continue
-		}
-		// Append Original
-		originalTask := Task{
-			ID:          nextID,
-			Title:       subject,
-			Deadline:    time.Now().AddDate(0, 0, 4),
-			Description: body,
-			Deleted:     false,
-		}
-		tasks[1] = append(tasks[1], originalTask)
-
-		// Append interleaved subject and body to the prompt
-		prompt += fmt.Sprintf("id:%d\nSubject: %s\nBody: %s\n\n", nextID, subject, body)
-		nextID++
-
-		index++
-	}*/
-	for i, msg := range messages {
 		var subject, body string
 
 		// Extract subject
@@ -160,17 +97,17 @@ func ProcessMessages(messages []gmail.Message) {
 		tasks[1] = append(tasks[1], originalTask)
 
 		// 確保 CourseNames 的索引有效
-		courseName := ""
+		/*courseName := ""
 		if i < len(CourseNames) {
 			courseName = CourseNames[i]
 		} else {
-			courseName = "General"
-		}
+			courseName = ""
+		}*/
 
 		// 動態生成包含 CourseNames 的 prompt
 		taskPrompt := fmt.Sprintf(`
 		Generate a task for the email. Use the JSON format provided.
-		The title should start with "%s" and be concise (less than 20 characters).
+		The title should be concise (less than 20 characters).%s
 		Use Traditional Chinese for Chinese emails, English for English emails, and Japanese for Japanese emails.
 		The description should be detailed and include line breaks where appropriate for better readability.
 		The "id" should be %d.
@@ -190,7 +127,7 @@ func ProcessMessages(messages []gmail.Message) {
 				"description": "string",
 				"deleted": false
 			}
-		]`, courseName, nextID, subject, body, nextID)
+		]`, "", nextID, subject, body, nextID)
 
 		// Append this prompt to the main prompt
 		prompt += taskPrompt
@@ -212,7 +149,6 @@ func ProcessMessages(messages []gmail.Message) {
 	for _, cad := range *generateResponse.Candidates {
 		if cad.Content != nil {
 			for _, part := range cad.Content.Parts {
-				//fmt.Print(part)
 				saveGeneratedTask(part)
 			}
 		}
@@ -222,13 +158,21 @@ func ProcessMessages(messages []gmail.Message) {
 // saveGeneratedTask saves the generated JSON to a file
 func saveGeneratedTask(content string) {
 
-	filenames := []string{"../backend/Task/tasks.json", "../backend/Task/rowTasks.json"}
+	filenames := []string{"/app/Task/tasks.json", "/app/Task/rowTasks.json"}
 	// 解析新生成的內容
 	var newTasks []Task
 	err := json.Unmarshal([]byte(content), &newTasks)
 	if err != nil {
 		fmt.Println("Error unmarshalling JSON:", err)
 		return
+	}
+
+	for i := range newTasks {
+		if i < len(CourseNames) {
+			newTasks[i].Title = fmt.Sprintf("%s %s", CourseNames[i], newTasks[i].Title)
+		} else {
+			newTasks[i].Title = fmt.Sprintf("%s", newTasks[i].Title)
+		}
 	}
 
 	// 合併 tasks
