@@ -64,7 +64,7 @@
   },
   {
     "id": 21,
-    "title": "會計學: 期末考解答",
+    "title": "General: 期末考解答",
     "deadline": "2024-12-17T16:00:00Z",
     "description": "主題：期末考解答請查收\n\n1. 期末考解答請查收\n2. 蔡老師非常欽佩同學的努力認真\n\n附件：2024會計學期末考題目與答案_20241129.docx\nhttps://e3p.nycu.edu.tw/pluginfile.php/179932/mod_forum/attachment/58935/2024%E6%9C%83%E8%A8%88%E5%AD%B8%E6%9C%9F%E6%9C%AB%E8%80%83%E9%A1%8C%E7%9B%AE%E8%88%87%E7%AD%94%E6%A1%88_20241129.docx",
     "deleted": false
@@ -148,58 +148,79 @@
   },
   {
     "id": 22,
-    "title": "服務學習(二) 關於成績相關事宜",
-    "deadline": "2025-01-01T16:00:00+08:00",
-    "description": "1131.515602 -\u003e Forums -\u003e 公告 -\u003e 關於成績相關事宜\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=49323#p64831\n關於成績相關事宜\nby 黃寀綾 智能系統 / AI System - Friday, 27 December 2024, 1:43 PM\n---------------------------------------------------------------------\n同學們好，\n\n連結是成績表單，\n\nhttps://docs.google.com/spreadsheets/d/1CsttRNe3rMZcWZMHUrm4ybm8jH-NxRXM/edit?gid=1016742038#gid=1016742038\n\n對成績有問題的同學請在12／28（六）前寄信給助教。\n\nBR,\nTAs\n---------------------------------------------------------------------\nThis is a copy of a message posted in 1131.515602.\n\nChange your forum digest preferences:\nhttps://e3p.nycu.edu.tw/mod/forum/index.php?id=9322",
+    "title": "網路程式設計概論 週四Demo",
+    "deadline": "2025-01-04T16:00:00+08:00",
+    "description": "本週期末專案Demo時間為\n\n一月二號  星期四 上午10:10 始於EC316電腦教室\n\n跟之前電腦教室上課時間地點一樣，其他Demo規則見前一公告\n\nTAs",
     "deleted": false
   },
   {
     "id": 23,
-    "title": " 學期專案公告",
-    "deadline": "2025-01-01T16:00:00+08:00",
-    "description": "1131.574000 -\u003e Forums -\u003e 公告 -\u003e [學期專案(TProj)_公告]\n口頭報告 + 書面報告 _已經公告 在 NYCU_E3 的作業區\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=49133#p64482\n[學期專案(TProj)_公告] 口頭報告 + 書面報告 _已經公告 在\nNYCU_E3 的作業區\nby 陳昌盛 資訊中心 / ITSC - Wednesday, 25 December 2024, 5:41 PM\n---------------------------------------------------------------------\n--  詳情, 參閱 NYCU_E3 平台的作業區\n\n摘要:   群組繳交 (每組, 繳交一份_ 由組長繳交)\n\n* 口頭報告 - 截止期限 (2024.12.31_週二)\n\n* 書面報告- 截止期限 (2025.01.02_週四)\n\n---------------------------------------------------------------------\nThis is a copy of a message posted in 1131.574000.\n\nChange your forum digest preferences:\nhttps://e3p.nycu.edu.tw/mod/forum/index.php?id=10854",
+    "title": "網路程式設計概論 期末專案展示",
+    "deadline": "2025-01-04T16:00:00+08:00",
+    "description": "關於期末專案的展示，同上封公告所示，為了展示不同設備裝置之間連線的呈現，且希望驗收流程順暢運行，\n希望大家能提早到現場設定好讓專案的程式能運作在不同電腦之間連線，盡量不要僅在本機連線供老師助教驗收，\n\n驗收現場會有WIFI提供區域網路連線使用，如果同學使用的是虛擬機，可以事先把虛擬機網路介面卡換成橋接介面卡/橋接模式，\n詳細虛擬機設定可以自行搜尋網路教學，此設定並不困難；\n\n但如果是使用WSL據我所知，可能需要比較繁複的步驟，建議提早想辦法因應；\n\n另外週四上課現場也會有跟之前上課一樣的ubuntu桌機環境，大家也可以考慮，將程式搬到桌機環境設定編譯運行跟驗收。\n\nDEMO當天的順序並不會依照表單公告所示，採取先到先準備好即可開始，老師跟助教分別驗收結束後可以提前離開，\n\n故 煩請提早到電腦教室準備，\" 請勿 \"\n延遲至最後一刻，甚或造成拖延課程結束時間！！\n\n希 照辦！\n\nBest,\nTAs",
     "deleted": false
   },
   {
     "id": 24,
-    "title": " 網際網路技術與應用",
-    "deadline": "2025-01-01T16:00:00+08:00",
-    "description": "Assignment [Tp_書面報告] 群組繳交_繳交期限 2025.01.02 ( 週四)\n[1] is new in the course 1131.574000.網際網路技術與應用 Internet\nTechnology and Applications [2].\n\nChange your notification preferences [3]\n\nOpened: Wednesday, 25 December 2024, 12:00 AM\nDue: Thursday, 2 January 2025, 11:59 PM\n\nLinks:\n------\n[1] https://e3p.nycu.edu.tw/mod/assign/view.php?id=96922\n[2] https://e3p.nycu.edu.tw/course/view.php?id=10854\n[3]\nhttps://e3p.nycu.edu.tw/message/notificationpreferences.php?userid=11689",
+    "title": "Go程式設計 lab 成績公告",
+    "deadline": "2025-01-04T16:00:00+08:00",
+    "description": "同學好：\n\n各位的 lab 成績已公告在這裡 [1]\n\n作業補交的最後期限為 2025/1/2 (四)\n\n若對成績有疑問，也請同學於期限前來信聯繫\n\n最後預祝各位同學新年快樂\n\nLinks:\n------\n[1] https://docs.google.com/spreadsheets/d/1uUDxnb3sKxIv_JMdhWcO040A3XJSIh5cJGhSVZlHWNQ/edit?usp=sharing",
     "deleted": false
   },
   {
     "id": 25,
-    "title": " 群組登記名單",
-    "deadline": "2025-01-01T16:00:00+08:00",
-    "description": "1131.574000 -\u003e Forums -\u003e 公告 -\u003e [TpLst_1223v2] 群組登記名單 (18\n組)\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=48859#p63844\n[TpLst_1223v2] 群組登記名單 (18 組)\nby 陳昌盛 資訊中心 / ITSC - Wednesday, 25 December 2024, 5:23 PM\n---------------------------------------------------------------------\n大家好,\n\n1. 群組名單, 共 18 組 (28 人)\n\n* 三人組 (x4) = 12\n* 二人組 (x2) = 4\n* 單人組 (x12) = 12\n* 請相關同學, 檢視群組名單, 是否正確 ( 如有錯誤,\n請聯繫老師更正.)\n\n2.  群組名單,  列表如下:\n\n* TP_team    Member\n\n* T01d    110550101陳威達, 110550010賴柏均\n* T02t     112550021 林幼馨,112550186 陳宥臻, 112550201\n蔡尚融\n* T03t     112550078 周佑康,112550097 楊弘奕, 112550173\n蘇宜盈\n* T04d     111652016方聖亞, 111652051廖毅臻\n* T05t      112550003 李昀祐, 112550015 劉家琪, 112550194\n徐凡懿\n* T06t       112550023徐睿廷, 112550065 陳敬森,\n112550101賴慶澤\n* T07s        0815336    黃祺勝\n* T08s       109652047  趙開玄\n* T09s       109700053王偉恆\n* T10s       111550013    施羿廷\n* T11s       111550092    韓承芳\n* T12s       111652008    廖健酉\n* T13s       111654005    李昌濬\n* T14s       112550041    陳昱瑋\n* T15s       112550088    陳泓宇\n* T16s       112550099    蔡烝旭\n* T17s       112550115    謝欣陵\n* T18s       112704061    江慶祐\n\n- 任課老師  陳昌盛\n\n---------------------------------------------------------------------\nThis is a copy of a message posted in 1131.574000.\n\nChange your forum digest preferences:\nhttps://e3p.nycu.edu.tw/mod/forum/index.php?id=10854",
+    "title": "機率 期末考成績公布",
+    "deadline": "2025-01-04T16:00:00+08:00",
+    "description": "Dear all,\n\n期末考成績已公布在E3，這次只安排一週可以領考卷，時間如下\n\n1. 週一14:00~17:00\n2. 週二14:00~17:00\n\n除此之外，還有幾件事需要注意\n1. E3上的總成績不代表最後成績，調分事宜還需由教授決定(不要再問助教了)\n2. 成績分布如下\n[成績分布]\n\nBest,\nTA",
     "deleted": false
   },
   {
     "id": 26,
-    "title": "網路程式設計概論 Final Project Demo",
-    "deadline": "2025-01-01T16:00:00+08:00",
-    "description": "1131.515518 -\u003e Forums -\u003e 一般公告 -\u003e About Final Project Demo\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=49042#p64237\nAbout Final Project Demo\nby 陳彥瑋 資科工博 / IOC - Wednesday, 25 December 2024, 10:40 AM\n---------------------------------------------------------------------\n各位同學大家好，\n\n關於期末專案的展示，由於老師期望大家能展示專案運行在不同電腦之間的連線運作，\n希望能有不同設備裝置之間連線的呈現，為了展示的驗收流程順暢運行，\n\n希望大家能提早設定好讓期末專案的程式能運作在不同電腦之間連線，盡量不要僅在本機連線供老師助教驗收，\n明天的驗收現場會有wifi提供區域網路連線使用，如果同學使用的是虛擬機，可以事先把虛擬機網路介面卡換成橋接介面卡/橋接模式，\n詳細虛擬機設定可以自行搜尋網路教學，此設定並不困難；\n\n但如果是使用WSL據我所知，可能需要比較繁複的步驟，建議提早想辦法因應；\n\n另外明天現場也會有跟之前上課一樣的ubuntu桌機環境，大家也可以考慮，將程式搬到桌機環境設定編譯運行跟驗收。\n\n希 照辦！\n\nBest,\nTAs\n\n---------------------------------------------------------------------\nThis is a copy of a message posted in 1131.515518.\n\nChange your forum digest preferences:\nhttps://e3p.nycu.edu.tw/mod/forum/index.php?id=9316",
+    "title": "服務學習(二) 成績相關事宜",
+    "deadline": "2025-01-04T16:00:00+08:00",
+    "description": "同學您好，\n\n對於自己的分數有意見，或是心得報告遲交，想要要分數的同學，\n\n請在今天之前寄信給大助教們，感謝。\n\nBest Regards, TAs",
     "deleted": false
   },
   {
     "id": 27,
-    "title": " 群組登記名單",
-    "deadline": "2025-01-01T16:00:00+08:00",
-    "description": "1131.574000 -\u003e Forums -\u003e 公告 -\u003e [TpLst_1223v1] 群組登記名單\n(已登記_5 組, 13 人) -- 其餘未登記 (站訂單人一組)\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=48859#p63844\n[TpLst_1223v1] 群組登記名單 (已登記_5 組, 13 人) --\n其餘未登記 (站訂單人一組)\nby 陳昌盛 資訊中心 / ITSC - Monday, 23 December 2024, 11:06 PM\n---------------------------------------------------------------------\n大家好,\n\n1. 目前已完成, 群組登記名單, 五組 (累計 13人)\n\n     * 其餘, 未登記者, 暫定為單人一組  (可在\n12/24:00,  e-mail 聯繫老師, 變更)\n\n2.  底下是目前, 已經登記的名單 (請相關同學,\n檢視群組名單, 是否正確)\n\n      - 如有錯誤, 請聯繫老師更正.\n\n3.  週二 (12/24)  將以群組公告的方式,  在 NYCU_E3 作業區,\n發出 階段1 (群組_口頭報告), 階段_2 (群組_書面報告)\n\n*     Rpt1_口頭報告\n*     Rpt2_書面報告\n\nTP_team\n\nMember\n\nT01d(2)\n\n110550101陳威達\n\n110550010賴柏均\n\nT02t(3)\n\n112550021     林幼馨\n\n112550186     陳宥臻\n\n112550201     蔡尚融\n\nT03t(3)\n\n112550097 楊弘奕\n\n112550173 蘇宜盈\n\n112550078 周佑康\n\nT04d(2)\n\n111652051廖毅臻\n\n111652016方聖亞\n\nT05t(3)\n\n112550003 李昀祐\n\n112550015 劉家琪\n\n112550194 徐凡懿\n\n- 任課老師  陳昌盛\n\n---------------------------------------------------------------------\nThis is a copy of a message posted in 1131.574000.\n\nChange your forum digest preferences:\nhttps://e3p.nycu.edu.tw/mod/forum/index.php?id=10854",
+    "title": "服務學習(二) 成績相關事宜",
+    "deadline": "2025-01-04T16:00:00+08:00",
+    "description": "同學們好，\n\n連結是成績表單，\n\nhttps://docs.google.com/spreadsheets/d/1CsttRNe3rMZcWZMHUrm4ybm8jH-NxRXM/edit?gid=1016742038#gid=1016742038\n\n對成績有問題的同學請在12／28（六）前寄信給助教。\n\nBR,\nTAs",
     "deleted": false
   },
   {
     "id": 28,
-    "title": "會計學 作業缺交名單",
-    "deadline": "2025-01-01T16:00:00+08:00",
-    "description": "1131.537011 -\u003e Forums -\u003e 公告 -\u003e 作業缺交名單\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=48529#p63320\n作業缺交名單\nby 蔡璧徽 管科系 / DMS - Saturday, 21 December 2024, 11:48 AM\n---------------------------------------------------------------------\n下列是各作業截至12/21中午12:00的缺交名單，請同學確認。\n若發現自己在名單上請於12/26晚上23:59前補交。\n\n9/25 講義 PAGES 42-45\n\n林○奇\n魏○呈\n黃○諺\n\n10/9 講義 PAGES 84-87\n\n李○璇\n林○奇\n魏○呈\n孫○寧\n榮○豪\n黃○諺\n\n11/20 講義 PAGES 144-149\n\n李○璇\n林○奇\n魏○呈\n榮○豪\n黃○諺\n\n11/27 講義 PAGES 231-237\n\n李○璇\n林○奇\n魏○呈\n榮○豪\n黃○諺\n許○愷\n羅○\n\n模擬考\n\n李○璇\n\n黃○諺\n\n---------------------------------------------------------------------\nThis is a copy of a message posted in 1131.537011.\n\nChange your forum digest preferences:\nhttps://e3p.nycu.edu.tw/mod/forum/index.php?id=10112",
+    "title": " 學期專案公告",
+    "deadline": "2025-01-04T16:00:00+08:00",
+    "description": " -- 詳情, 參閱 NYCU_E3 平台的作業區\n\n摘要:  群組繳交 (每組, 繳交一份_ 由組長繳交)\n\n* 口頭報告 - 截止期限 (2024.12.31_週二)\n\n* 書面報告- 截止期限 (2025.01.02_週四)",
     "deleted": false
   },
   {
     "id": 29,
-    "title": "演算法概論 程式考試座位安排",
-    "deadline": "2025-01-01T16:00:00+08:00",
-    "description": "1131.515504 -\u003e Forums -\u003e 公告 -\u003e [Announcement] Seat arrangement for\nprogramming exam\nhttps://e3p.nycu.edu.tw/mod/forum/discuss.php?d=48525#p63316\n[Announcement] Seat arrangement for programming exam\nby 黃佑得 資工系 / DCP - Saturday, 21 December 2024, 10:53 AM\n---------------------------------------------------------------------\nIf your student ID \u003c 112550040, go to EC315;\nIf your student 112550040",
+    "title": " Tp_書面報告",
+    "deadline": "2025-01-04T16:00:00+08:00",
+    "description": "Assignment [Tp_書面報告] 群組繳交_繳交期限 2025.01.02 ( 週四) \n[1] is new in the course 1131.574000.網際網路技術與應用 Internet Technology and Applications [2].\n\nChange your notification preferences [3]\n\nOpened: Wednesday, 25 December 2024, 12:00 AM\nDue: Thursday, 2 January 2025, 11:59 PM\n\nLinks:\n------\n[1] https://e3p.nycu.edu.tw/mod/assign/view.php?id=96922\n[2] https://e3p.nycu.edu.tw/course/view.php?id=10854\n[3] https://e3p.nycu.edu.tw/message/notificationpreferences.php?userid=11689",
+    "deleted": false
+  },
+  {
+    "id": 30,
+    "title": " 群組登記名單",
+    "deadline": "2025-01-04T16:00:00+08:00",
+    "description": "大家好,\n\n1. 群組名單, 共 18 組 (28 人)\n\n* 三人組 (x4) = 12\n* 二人組 (x2) = 4\n* 單人組 (x12) = 12\n* 請相關同學, 檢視群組名單, 是否正確 ( 如有錯誤, 請聯繫老師更正.)\n\n2.  群組名單,  列表如下:\n\n* TP_team    Member\n\n* T01d    110550101陳威達, 110550010賴柏均\n* T02t     112550021 林幼馨,112550186 陳宥臻, 112550201 蔡尚融\n* T03t     112550078 周佑康,112550097 楊弘奕, 112550173 蘇宜盈\n* T04d     111652016方聖亞, 111652051廖毅臻\n* T05t      112550003 李昀祐, 112550015 劉家琪, 112550194 徐凡懿\n* T06t       112550023徐睿廷, 112550065 陳敬森, 112550101賴慶澤\n* T07s        0815336    黃祺勝\n* T08s       109652047  趙開玄\n* T09s       109700053王偉恆\n* T10s       111550013    施羿廷\n* T11s       111550092    韓承芳\n* T12s       111652008    廖健酉\n* T13s       111654005    李昌濬\n* T14s       112550041    陳昱瑋\n* T15s       112550088    陳泓宇\n* T16s       112550099    蔡烝旭\n* T17s       112550115    謝欣陵\n* T18s       112704061    江慶祐\n\n- 任課老師  陳昌盛",
+    "deleted": false
+  },
+  {
+    "id": 31,
+    "title": "網路程式設計概論 期末專案Demo",
+    "deadline": "2025-01-04T16:00:00+08:00",
+    "description": "各位同學大家好，\n\n關於期末專案的展示，由於老師期望大家能展示專案運行在不同電腦之間的連線運作，\n希望能有不同設備裝置之間連線的呈現，為了展示的驗收流程順暢運行，\n\n希望大家能提早設定好讓期末專案的程式能運作在不同電腦之間連線，盡量不要僅在本機連線供老師助教驗收，\n明天的驗收現場會有wifi提供區域網路連線使用，如果同學使用的是虛擬機，可以事先把虛擬機網路介面卡換成橋接介面卡/橋接模式，\n詳細虛擬機設定可以自行搜尋網路教學，此設定並不困難；\n\n但如果是使用WSL據我所知，可能需要比較繁複的步驟，建議提早想辦法因應；\n\n另外明天現場也會有跟之前上課一樣的ubuntu桌機環境，大家也可以考慮，將程式搬到桌機環境設定編譯運行跟驗收。\n\n希 照辦！\n\nBest,\nTAs",
+    "deleted": false
+  },
+  {
+    "id": 32,
+    "title": " 群組登記名單",
+    "deadline": "2025-01-04T16:00:00+08:00",
+    "description": "大家好,\n\n1. 目前已完成, 群組登記名單, 五組 (累計 13人)\n\n     * 其餘, 未登記者, 暫定為單人一組  (可在12/24:00,  e-mail 聯繫老師, 變更)\n\n2.  底下是目前, 已經登記的名單 (請相關同學, 檢視群組名單, 是否正確)\n\n      - 如有錯誤, 請聯繫老師更正.\n\n3.  週二 (12/24)  將以群組公告的方式,  在 NYCU_E3 作業區, 發出 階段1 (群組_口頭報告), 階段_2 (群組_書面報告)\n\n*     Rpt1_口頭報告\n*     Rpt2_書面報告\n\nTP_team\n\nMember\n\nT01d(2)\n\n110550101陳威達\n\n110550010賴柏均\n\nT02t(3)\n\n112550021     林幼馨\n\n112550186     陳宥臻\n\n112550201     蔡尚融\n\nT03t(3)\n\n112550097 楊弘奕\n\n112550173 蘇宜盈\n\n112550078 周佑康\n\nT04d(2)\n\n111652051廖毅臻\n\n111652016方聖亞\n\nT05t(3)\n\n112550003 李昀祐\n\n112550015 劉家琪\n\n112550194 徐凡懿\n\n- 任課老師  陳昌盛",
     "deleted": false
   }
 ]
