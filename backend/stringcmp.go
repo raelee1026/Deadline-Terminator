@@ -22,11 +22,11 @@ func ProcessString(message []gmail.Message) ([]string, error) {
 		log.Println("No messages to process.")
 		return []string{}, nil
 	}
-
+	filterPrefix := os.Getenv("FILTER_PREFIX")
 	CourseNames = []string{}
 	processedSubjects := make(map[string]bool)
 
-	courses, err := loadCourses("/app/course/crawl1131.json")
+	courses, err := loadCourses("/app/course/crawl" + filterPrefix + ".json")
 	if err != nil {
 		return nil, fmt.Errorf("failed to load courses: %v", err)
 	}
@@ -44,14 +44,13 @@ func ProcessString(message []gmail.Message) ([]string, error) {
 			continue
 		}
 
-		// 標記這個 subject 為已處理
 		processedSubjects[subject] = true
-
-		if strings.HasPrefix(subject, "1131.") {
-			re := regexp.MustCompile(`^1131\.(\d+)(:|\.)`)
+		
+		if strings.HasPrefix(subject, filterPrefix+".") {
+			re := regexp.MustCompile("^" + filterPrefix + `\.(\d+)(:|\.)`)
 			match := re.FindStringSubmatch(subject)
 
-			//fmt.Printf("match : %s here \n", match)
+			fmt.Printf("match : %s here \n", match)
 
 			if len(match) > 1 {
 				number := match[1]

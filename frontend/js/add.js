@@ -9,17 +9,14 @@ overlay.classList.add('overlay');
 document.body.appendChild(overlay); 
 
 syncModal.addEventListener('click', function() {
-    // 顯示 loading 並禁用按鈕
     syncModal.disabled = true;
-    syncModal.textContent = "Syncing..."; // 顯示 loading 文字
+    syncModal.textContent = "Syncing...";
     
-    // 顯示 loading 圖示並啟動遮罩層
     const loadingSpinner = document.createElement('span');
-    loadingSpinner.classList.add('loading-spinner'); // 顯示 loading 樣式
+    loadingSpinner.classList.add('loading-spinner');
     syncModal.appendChild(loadingSpinner);
-    overlay.style.display = 'block';  // 顯示遮罩層
+    overlay.style.display = 'block';
 
-    // 發送同步請求
     fetch('/api/tasks/catch', {
         method: 'POST',  
         headers: {
@@ -31,13 +28,15 @@ syncModal.addEventListener('click', function() {
     .then(data => {
         console.log('Gmail sync response:', data);
         alert('Gmail synced successfully!');
+        setTimeout(() => { 
+            window.loadTasks(); 
+        }, 1000);
     })
     .catch(error => {
         console.error('Error syncing Gmail:', error);
         alert('Failed to sync Gmail.');
     })
     .finally(() => {
-        // 請求完成後恢復按鈕狀態
         syncModal.disabled = false;
         syncModal.textContent = syncButtonText; 
         loadingSpinner.remove(); 

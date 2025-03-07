@@ -15,38 +15,71 @@ cd deadline-terminator
 
 ### 2. Add .env file
 
-- Get the Gemini API Key. You can get is from  https://makersuite.google.com/app/prompts/new_freeform
 - Add .env  `/backend/.env`
+- Add the semester. (e.g., ``1131``, ``1132``)
 ```bash
-GEMINI_API_KEY=
+FILTER_PREFIX=1132
 ```
+### 3. Obtain Google OAuth2 Credentials (credentials.json)
 
-### 3. Compile and Run the Server
+1.Go to Google Cloud Console and create a new project.
 
-Run the following command to start the backend server:
+2.Enable Gmail API for your project.
+
+3.Create OAuth2 credentials:
+  - Go to ``APIs & Services`` → ``Credentials``
+  - Click ``Create Credentials`` → ``OAuth Client ID``
+  - Choose Web application and add http://localhost:8080/oauth2/callback as a redirect URI.
+
+4.Download the credentials:
+  - Click ``Download JSON`` and save it as ``/backend/config/credentials.json``
+
+### 4. Start the Application with Docker
+
+Run the following command to build and start all services:
 
 ```bash
-go run .
+docker-compose up --build -d
 ```
 
-The server will start at `http://localhost:8080`.
+### 5. Authenticate with Google (Required Step)
 
-### 4. Access the Application
+After starting the containers, you must authenticate with Google to enable Gmail task synchronization.
 
-Open your browser and go to:
+Follow these steps:
 
-```plaintext
-http://localhost:8080
-```
-You can now use the application.
+1.Run the following command to check the backend logs:
 
-### 5. Authenticate with Google
-After running main.go, open your browser and go to the following URL to authenticate with your NYCU email:
-```bash
-https://accounts.google.com/o/oauth2/auth?access_type=offline&client_id=997285622302-goltvajj196rm1ims0sijhgbvro82cad.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Foauth2%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly&state=state-token
-```
+  ```bash
+  docker-compose logs backend
+  ```
+2.Look for the authorization URL in the logs:
+
+  ```bash
+  Please visit the following URL to complete the authorization: 
+  ```
+3.Click the URL (or copy & paste it into your browser).
+
+### 6. Managing Docker Containers
+1.Stop all containers
+
+  ```bash
+  docker-compose down
+  ```
+2.Restart containers (after code changes)
+
+  ```bash
+  docker-compose up --build -d
+  ````
+3.Check running containers
+
+  ```bash
+  docker ps
+  ```
+4.View backend logs (for troubleshooting)
+
+  ```bash
+  docker-compose logs backend
+  ```
 ## Demo Video
 https://drive.google.com/drive/folders/1uuOu4ukJdv7FZx6AQe0kAuTO3LLZNPfF?usp=sharing
-
-Notice:
-This process might take some time depending on the number of emails and the network conditions. Please be patient.

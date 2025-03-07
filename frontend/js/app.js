@@ -2,8 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const taskList = document.getElementById("task-list");
     const taskForm = document.getElementById("task-form");
 
-    // 加載任務列表
-    function loadTasks() {
+    window.loadTasks = function () {
         fetch("/api/tasks")
             .then((response) => {
                 if (!response.ok) {
@@ -17,13 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     const taskDiv = document.createElement("div");
                     taskDiv.className = "task";
                     if (task.deleted) {
-                        taskDiv.classList.add("task-deleted"); // 添加刪除樣式
+                        taskDiv.classList.add("task-deleted");
                     }
 
-                    // 將描述中的 \n 轉換為 <br> 來顯示換行
                     const descriptionWithBreaks = task.description.replace(/\\n/g, '\n');
                     console.log(descriptionWithBreaks);
-                    //html, css
                     taskDiv.innerHTML = `
                         <h3>${task.title}</h3>
                         <p><strong>Deadline:</strong> ${new Date(task.deadline).toLocaleString()}</p>
@@ -31,14 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         <button class="delete-btn" data-id="${task.id}">Delete</button>
                     `;
 
-                    // 刪除的任務放到最下面
                     if (task.deleted) {
                         taskList.appendChild(taskDiv);
                     } else {
                         taskList.prepend(taskDiv);
                     }
-
-                    // 添加刪除按鈕的事件監聽器
                     taskDiv.querySelector(".delete-btn").addEventListener("click", () => {
                         deleteTask(task.id);
                     });
@@ -46,11 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch((error) => {
                 console.error("Error fetching tasks:", error);
-                taskList.innerHTML = `<p style="color: red;">Failed to load tasks. Please try again later.</p>`;
+                taskList.innerHTML = `<p style="color: #666; text-align: center;">📌 No tasks yet. Click the "+" button to add one!</p>`;
             });
     }
 
-    // 刪除任務
     function deleteTask(taskId) {
         fetch("/api/tasks/delete", {
             method: "POST",
@@ -63,14 +56,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                loadTasks(); // 刷新任務列表
+                loadTasks();
             })
             .catch((error) => {
                 console.error("Error deleting task:", error);
             });
     }
 
-    // 提交新任務
+
     taskForm.addEventListener("submit", (event) => {
         event.preventDefault();
 
@@ -102,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then(() => {
                 taskForm.reset();
-                loadTasks(); // 重新加載任務列表
+                loadTasks();
             })
             .catch((error) => {
                 console.error("Error adding task:", error);
@@ -110,6 +103,5 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     });
 
-    // 初始化加載任務列表
     loadTasks();
 });
