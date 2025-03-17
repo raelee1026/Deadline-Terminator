@@ -22,7 +22,7 @@ var (
 var messages []gmail.Message
 
 func init() {
-	b, err := os.ReadFile("../config/credentials.json")
+	b, err := os.ReadFile("./config/credentials.json")
 	if err != nil {
 		log.Fatalf("Unable to read client secret file: %v", err)
 	}
@@ -77,6 +77,7 @@ func GetFilteredMessages(srv *gmail.Service) ([]gmail.Message, error) {
 		return nil, fmt.Errorf("unable to retrieve messages: %v", err)
 	}
 
+	filterPrefix := os.Getenv("FILTER_PREFIX")
 	var messages []gmail.Message
 	for _, m := range res.Messages {
 		msg, err := srv.Users.Messages.Get(user, m.Id).Do()
@@ -85,7 +86,7 @@ func GetFilteredMessages(srv *gmail.Service) ([]gmail.Message, error) {
 		}
 
 		for _, header := range msg.Payload.Headers {
-			if header.Name == "Subject" && strings.HasPrefix(header.Value, "1131.") {
+			if header.Name == "Subject" && strings.HasPrefix(header.Value, filterPrefix) {
 				messages = append(messages, *msg)
 			}
 		}

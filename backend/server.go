@@ -21,16 +21,15 @@ var nextID = 1
 var message []gmail.Message
 
 func init() {
-	// 初始化 tasks 切片
+
 	tasks = make([][]Task, 2)
 
-	// 加载环境变量
 	if err := godotenv.Load(".env"); err != nil {
 		log.Println("Error loading .env file")
 	}
 
-	// 加载任务文件
-	filenames := []string{"../backend/Task/tasks.json", "../backend/Task/rowTasks.json"}
+	//filenames := []string{"Task/tasks.json", "Task/rowTasks.json"}
+	filenames := []string{"/app/Task/tasks.json", "/app/Task/rowTasks.json"}
 	if err := loadTasksFromFile(filenames); err != nil {
 		log.Fatalf("Failed to load tasks: %v", err)
 	}
@@ -238,7 +237,7 @@ func syncGmailTasks() ([]Task, error) {
 		newTask := Task{
 			ID:          nextID,
 			Title:       subject,
-			Deadline:    time.Now().AddDate(0, 0, 7), // 假設截止日期為一周後
+			Deadline:    time.Now().AddDate(0, 0, 7),
 			Description: "Imported from Gmail",
 			Deleted:     false,
 		}

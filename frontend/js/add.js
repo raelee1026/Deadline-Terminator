@@ -2,9 +2,21 @@ const openModal = document.getElementById("open-modal");
 const closeModal = document.getElementById("close-modal");
 const taskModal = document.getElementById("task-modal");
 const syncModal = document.getElementById('sync-modal');
+const syncButtonText = syncModal.textContent; 
+
+const overlay = document.createElement('div');
+overlay.classList.add('overlay');
+document.body.appendChild(overlay); 
 
 syncModal.addEventListener('click', function() {
-    console.log("click")
+    syncModal.disabled = true;
+    syncModal.textContent = "Syncing...";
+    
+    const loadingSpinner = document.createElement('span');
+    loadingSpinner.classList.add('loading-spinner');
+    syncModal.appendChild(loadingSpinner);
+    overlay.style.display = 'block';
+
     fetch('/api/tasks/catch', {
         method: 'POST',  
         headers: {
@@ -16,10 +28,19 @@ syncModal.addEventListener('click', function() {
     .then(data => {
         console.log('Gmail sync response:', data);
         alert('Gmail synced successfully!');
+        setTimeout(() => { 
+            window.loadTasks(); 
+        }, 1000);
     })
     .catch(error => {
         console.error('Error syncing Gmail:', error);
         alert('Failed to sync Gmail.');
+    })
+    .finally(() => {
+        syncModal.disabled = false;
+        syncModal.textContent = syncButtonText; 
+        loadingSpinner.remove(); 
+        overlay.style.display = 'none'; 
     });
 });
 
