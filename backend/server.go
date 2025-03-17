@@ -28,6 +28,7 @@ func init() {
 		log.Println("Error loading .env file")
 	}
 
+	//filenames := []string{"Task/tasks.json", "Task/rowTasks.json"}
 	filenames := []string{"/app/Task/tasks.json", "/app/Task/rowTasks.json"}
 	if err := loadTasksFromFile(filenames); err != nil {
 		log.Fatalf("Failed to load tasks: %v", err)

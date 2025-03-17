@@ -26,6 +26,8 @@ func ProcessString(message []gmail.Message) ([]string, error) {
 	CourseNames = []string{}
 	processedSubjects := make(map[string]bool)
 
+	// courses, err := loadCourses("course/crawl" + filterPrefix + ".json")
+	// docker
 	courses, err := loadCourses("/app/course/crawl" + filterPrefix + ".json")
 	if err != nil {
 		return nil, fmt.Errorf("failed to load courses: %v", err)

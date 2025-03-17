@@ -116,6 +116,8 @@ func ProcessMessages(messages []gmail.Message) {
 // saveGeneratedTask saves the generated JSON to a file
 func saveGeneratedTask() {
 
+	// filenames := []string{"Task/tasks.json", "Task/rowTasks.json"}
+	// docker
 	filenames := []string{"/app/Task/tasks.json", "/app/Task/rowTasks.json"}
 
 	formattedJSON, err := json.MarshalIndent(tasks[0], "", "  ")

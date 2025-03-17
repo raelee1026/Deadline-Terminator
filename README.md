@@ -81,5 +81,4 @@ Follow these steps:
   ```bash
   docker-compose logs backend
   ```
-## Demo Video
-https://drive.google.com/drive/folders/1uuOu4ukJdv7FZx6AQe0kAuTO3LLZNPfF?usp=sharing
+## [Demo Video](https://youtu.be/GlxTj1ihrVo)
